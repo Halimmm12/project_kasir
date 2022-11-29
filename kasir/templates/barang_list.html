@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="card">
+                <div class="header">
+                    <a class="btn btn-primary" href="{% url 'barang_add' %}"><b><i class="fa-solid fa-bars">ADD DATA LAPTOP</i></b></a>
+                </div> 
+                <div class="body">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Nomer</th>
+                            <th scope="col">Merek</th>
+                            <th scope="col">Deskripsi</th>
+                            <th scope="col">Kategori</th>
+                            <th scope="col">Jumlah</th>
+                            <th scope="col">EDIT</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for p in produk %}
+                          <tr>
+                            <th scope="row">{{  forloop.counter }}</th>
+                            <td>{{ p.nama }}</td>
+                            <td>{{ p.deskripsi }}</td>
+                            <td>{{ p.kategori }}</td>
+                            <td>{{ p.jumlah }}</td>
+
+                            <td>
+                                <a class="btn btn-warning btn-sm" href="{% url 'barang_update' p.id %}"><b>UBAH DATA</b></a>
+                                <a onclick="alert('Konfirmasi Penghapusan Data')" class="btn btn-danger btn-sm" href="{% url 'barang_delete' p.id %}"><b>DELL DATA </b></a>
+                            </td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+            <br><br><br>
+
+        </div>
+    </div>
+{% endblock content %}
+

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="card">
+            <div class="body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                      <label for="exampleInputEmail1" class="form-label"><b>Kategori Laptop</b></label>
+                      <select name="kategori" id="" class="form-control">
+                        {% for kategori in kategori %}
+                          {% if get_produk.kategori ==  kategori %}
+                            <option value="{{ kategori.nama }}" selected="selected">{{ kategori.nama }}</option>
+                            {% else %}
+                            <option value="{{ kategori.nama }}">{{ kategori.nama }}</option>
+                          {% endif %}                       
+                        {% endfor %}                     
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword1" class="form-label"><b>Merek/Serial</b></label>
+                      <input type="text" class="form-control" name="nama" placeholder="Silahkan isi merek laptop.." value="{{ get_produk.nama }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label"><b>Jumlah</b></label>
+                        <input type="text" class="form-control" name="jumlah" placeholder="Silahkan isi jumlah laptop" value="{{ get_produk.jumlah }}">
+                      </div>
+                    <div class="mb-3">
+                        <labelclass="form-label"><b>Deskripsi Laptop</b></labelclass=>
+                        <textarea name="deskripsi" class="form-control" placeholder="Silahkan isi deskripsi produk">{{ get_produk.deskripsi }}"</textarea>
+                      </div>
+        
+                    <button type="submit" class="btn btn-warning"><b>Tambah Data</b></button>
+                  </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
